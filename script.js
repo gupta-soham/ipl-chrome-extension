@@ -32,7 +32,7 @@ async function getMatchData() {
                 }
 
             } catch {
-                [score] = matchesList.filter(match => match.series_id == "c75f8952-74d4-416f-b7b4-7da4b4e3ae6e").map(match =>`${match.score[0].inning} = ${match.score[0].r}/${match.score[0].w} in ${match.score[0].o} overs`);
+                score = "Match has not started yet!";
                 // console.log(error);
             }
             
@@ -49,8 +49,8 @@ async function getMatchData() {
             return relevantData;
 
         })
-        .catch(error => console.error(error));
-        // .catch(e => console.log(e));
+//         .catch(error => console.error(error));
+        .catch(e => console.log(e));
 }
 
 getMatchData();
