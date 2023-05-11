@@ -21,18 +21,22 @@ async function getMatchData() {
 
             const [team] = matchesList.filter(match => match.series_id == "c75f8952-74d4-416f-b7b4-7da4b4e3ae6e").map(match => `${match.teamInfo[0].shortname} vs ${match.teamInfo[1].shortname}`);
 
-            let score = "";
+            let score = "";            
             try {
                 if(matchesList.filter(match => match.series_id == "c75f8952-74d4-416f-b7b4-7da4b4e3ae6e").map(match => `${match.score[0].o == 20}`)) {
                     [score] = matchesList.filter(match => match.series_id == "c75f8952-74d4-416f-b7b4-7da4b4e3ae6e").map(match =>`${match.score[0].inning} = ${match.score[0].r}/${match.score[0].w} \n ${match.score[1].inning} = ${match.score[1].r}/${match.score[1].w} in ${match.score[1].o} overs`);
                 } 
+                else if(matchesList.filter(match => match.series_id == "c75f8952-74d4-416f-b7b4-7da4b4e3ae6e").map(match => `${match.score[0].o > 20}`)) {
+                    // score = `Match has not started yet!`;
+                    // console.log(score);
+                }
                 else {
-                    [score] = matchesList.filter(match => match.series_id == "c75f8952-74d4-416f-b7b4-7da4b4e3ae6e").map(match =>`${match.score[0].inning} = ${match.score[0].r}/${match.score[0].w} in ${match.score[0].o} overs`);
+                    throw x;
                     // console.log(score);
                 }
 
-            } catch {
-                score = "Match has not started yet!";
+            } catch(x) {
+                [score] = matchesList.filter(match => match.series_id == "c75f8952-74d4-416f-b7b4-7da4b4e3ae6e").map(match =>`${match.score[0].inning} = ${match.score[0].r}/${match.score[0].w} in ${match.score[0].o} overs`);
                 // console.log(error);
             }
             
